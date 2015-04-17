@@ -1,0 +1,16 @@
+
+    <p class="h1 text-center" ng-hide="canvas.title">{{countries[correctAnswer][title]}}</p>
+    <div class="col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4" ng-show="canvas.title">
+        <canvas  width="120" height="60" draw-me></canvas>
+    </div>
+    <br>
+    <div class="row" ng-repeat="item in options">
+        <option-button ng-hide="canvas.choice"></option-button>
+        <canvas-button ng-show="canvas.choice"></canvas-button>
+    </div>
+    <br>
+
+    <my-modal></my-modal>
+    <!--<p class="h3 text-center" ng-style="correctStyle"> {{correct}} </p>-->
+    
+        
