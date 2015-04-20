@@ -17,15 +17,16 @@ app.factory('optionServices', ['countryData', function(countryData) {
         {
             numberList.push(i);
         }
-
+        
+        numberList.splice(answer, 1);
         for (var i=0; i<3; i++)
         {
             var newNumber = Math.floor(Math.random()*numberList.length);
-            options.push(newNumber);
-            numberList.splice(newNumber,0);
+            options.push(numberList[newNumber]);
+            numberList.splice(newNumber,1);
         }
        
-       answerPosition = Math.floor(Math.random()*4)+1
+       answerPosition = Math.floor(Math.random()*4)+1;
        options.splice(answerPosition, 0, options[0]);
        options.shift();
 
@@ -33,9 +34,12 @@ app.factory('optionServices', ['countryData', function(countryData) {
     };
     
     var correctCheck = function (check) {
-        var buttonClicked = document.getElementById("option" + check);
+        var buttonClicked = document.getElementById("option" + check) 
+        var canvasButtonClicked = document.getElementById("canvas" + check);
         var checkAgainst = countryData.countries[options[check]].Name;
         document.getElementById("option"+(answerPosition-1)).classList.add('btn-success');
+        document.getElementById("canvas"+(answerPosition-1)).classList.add("correct-glow");
+        
         if (checkAgainst == countryData.countries[correctAnswer].Name)
         {
             return "Correct";
@@ -43,6 +47,8 @@ app.factory('optionServices', ['countryData', function(countryData) {
         else
         {
             buttonClicked.classList.add("btn-danger");
+            canvasButtonClicked.classList.add("incorrect-glow");
+            
             return "Incorrect";
         }
     };

@@ -1,4 +1,4 @@
-var app = angular.module("GeoGame", ['ngRoute']);
+var app = angular.module("GeoGame", ['ngRoute', 'ui.bootstrap']);
 app.config(function ($routeProvider) {
    $routeProvider
            .when('/', {

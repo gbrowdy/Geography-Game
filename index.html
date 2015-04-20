@@ -5,11 +5,8 @@
         <title>Geography Game</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="prefetch" href="img/flags_spritesheet.png" />
-        <link rel="prefetch" href="img/libya.png" />
-        <link rel="prefetch" href="img/peru_flag.png" />
-        <link rel="prefetch" href="img/south_sudan.png" />
-                <!-- Latest compiled and minified bootstrap CSS -->
+
+        <!-- Latest compiled and minified bootstrap CSS -->
         <link rel="stylesheet" 
               href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         
@@ -24,11 +21,27 @@
         
         <!-- Angular Routing -->
         <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
+        
+        <!--Angular Bootstrap UI -->
+        <script src="js/ui-bootstrap-tpls-0.12.1.min.js"></script>
         <style>
             canvas {
                 width: 100%;
                 height: auto;
             }
+            
+            .correct-glow {
+                margin: -5px 0px -5px 0px;
+                border: 10px solid green;
+                box-shadow: 0px 0px 50px green;
+            }
+            
+            .incorrect-glow {
+                margin: -5px 0px -5px 0px;
+                border: 10px solid red;
+                box-shadow: 0px 0px 50px red;                
+            }
+            
         </style>
         
     </head>
@@ -49,13 +62,15 @@
         <!-- Controllers -->
         <script src="js/controllers/MainController.js"></script>
         <script src="js/controllers/GameController.js"></script>
+        <script src="js/controllers/IntroModalCtrl.js"></script>
+        <script src="js/controllers/RoundModalCtrl.js"></script>
+        <script src="js/controllers/EndModalCtrl.js"></script>
         
         <!-- Directives -->
         <script src="js/directives/MainMenu.js"></script>
         <script src="js/directives/GameOptions.js"></script>
         <script src="js/directives/CanvasOptions.js"></script>
         <script src="js/directives/DrawDirective.js"></script>
-        <script src="js/directives/Modal.js"></script>
                     
         <!-- Services -->
         <script src="js/services/countries.js"></script>
