@@ -41,7 +41,7 @@ app.factory('countryData', [function() {
     {"Name":"Comoros","Capital":"Moroni"},
     {"Name":"Democratic Republic of Congo","Capital":"Kinshasa"},
     {"Name":"Republic of Congo","Capital":"Brazzaville"},
-    {"Name":"Costa Rica","Capital":"Sant José"},
+    {"Name":"Costa Rica","Capital":"San José"},
     {"Name":"Côte d’Ivoire","Capital":"Yamoussoukro"},
     {"Name":"Croatia","Capital":"Zagreb"},
     {"Name":"Cuba","Capital":"Havana"},

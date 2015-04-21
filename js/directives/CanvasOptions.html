@@ -1,6 +1,8 @@
-<br>
-<div class="row">
-    <div class="col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4">
-        <canvas id="canvas{{$index}}" width="120" height="60" draw-me ng-click="click($index)"></canvas>
+
+<div class="row" style="margin-bottom: 5px">
+    <div class="col-sm-2 col-sm-offset-5 col-xs-6 col-xs-offset-3">
+        <button id="canvas{{$index}}" class="btn btn-block" ng-click="click($index)" ng-disabled="isDisabled" style="opacity: 1">
+            <canvas  width="120" height="60" draw-me ></canvas>
+        </button>
     </div>
 </div>

@@ -1,5 +1,5 @@
 
-    <p class="h1 text-center" ng-hide="canvas.title">{{countries[correctAnswer][title]}}</p>
+    <p class="{{headerStyle}} text-center" ng-hide="canvas.title">{{countries[correctAnswer][title]}}</p>
     <div class="col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4" ng-show="canvas.title">
         <canvas  id="header" width="120" height="60" draw-me></canvas>
     </div>

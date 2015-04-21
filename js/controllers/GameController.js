@@ -11,7 +11,9 @@ app.controller('GameController', ['$scope', '$route', '$modal', '$location', 'co
         $scope.options = optionServices.setOptions($scope.correctAnswer);
         $scope.correct = "Correct";
         $scope.correctStyle = {'visibility': 'hidden'};
-        
+        $scope.headerStyle = (window.innerWidth < 800) ? "h4" : "h1";
+        $scope.buttonStyle = (window.innerWidth < 800) ? {"font-size":"4vw"} : "";
+        $scope.isDisabled = false;
         
         if ($scope.round == 1) 
         {
@@ -44,11 +46,14 @@ app.controller('GameController', ['$scope', '$route', '$modal', '$location', 'co
         
         $scope.click = function (index) {
            $scope.correct = optionServices.correctCheck(index);
+           $scope.isDisabled = true;
+           $scope.opacity = {"opacity":1};
            if ($scope.correct == "Correct")
                gameServices.addCorrect();
            $scope.timer = gameServices.stopTimer();
            $scope.points = ($scope.correct == "Incorrect") ? 0 :
-                   (50 + (($scope.timer > 15000) ? 0 : (150 - Math.round($scope.timer/100))));
+                   (50 + (($scope.timer > 17000) ? 0 : 
+                   (($scope.timer<2000) ? 150 : (150 - Math.round($scope.timer/100)+20))));
            $scope.totalPoints = gameServices.updateTotalPoints($scope.points);
             setTimeout(function () {
                $modal.open({

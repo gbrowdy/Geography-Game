@@ -3,12 +3,48 @@ app.factory('optionServices', ['countryData', function(countryData) {
     var correctAnswer;
     var answerPosition;
     var options = [];
+    var possibleOptions = [];
+    for (var i=0; i<countryData.countries.length; i++)
+    {
+        possibleOptions.push(i);
+    }
+    
+    var shuffle = function(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex ;
 
-    var setCorrectAnswer = function () {
-        correctAnswer = Math.floor(Math.random()*countryData.countries.length);
-        return correctAnswer;
+          // While there remain elements to shuffle...
+          while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+
+          return array;  
     };
-
+    
+    
+    var setCorrectAnswer = function () {
+        shuffle(possibleOptions);
+        correctAnswer = possibleOptions[0];
+        possibleOptions.shift();
+        return correctAnswer;
+        
+    };
+    
+    var resetOptions = function () {
+        possibleOptions = [];
+        for (var i=0; i<countryData.countries.length; i++)
+        {
+            possibleOptions.push(i);
+        }
+    };
+    
     var setOptions = function (answer) {
         var numberList = [];
         options = [answer];
@@ -19,12 +55,8 @@ app.factory('optionServices', ['countryData', function(countryData) {
         }
         
         numberList.splice(answer, 1);
-        for (var i=0; i<3; i++)
-        {
-            var newNumber = Math.floor(Math.random()*numberList.length);
-            options.push(numberList[newNumber]);
-            numberList.splice(newNumber,1);
-        }
+        shuffle(numberList);
+        options = options.concat(numberList.slice(0,3));
        
        answerPosition = Math.floor(Math.random()*4)+1;
        options.splice(answerPosition, 0, options[0]);
@@ -38,7 +70,7 @@ app.factory('optionServices', ['countryData', function(countryData) {
         var canvasButtonClicked = document.getElementById("canvas" + check);
         var checkAgainst = countryData.countries[options[check]].Name;
         document.getElementById("option"+(answerPosition-1)).classList.add('btn-success');
-        document.getElementById("canvas"+(answerPosition-1)).classList.add("correct-glow");
+        document.getElementById("canvas"+(answerPosition-1)).classList.add("btn-success");
         
         if (checkAgainst == countryData.countries[correctAnswer].Name)
         {
@@ -47,7 +79,7 @@ app.factory('optionServices', ['countryData', function(countryData) {
         else
         {
             buttonClicked.classList.add("btn-danger");
-            canvasButtonClicked.classList.add("incorrect-glow");
+            canvasButtonClicked.classList.add("btn-danger");
             
             return "Incorrect";
         }
@@ -56,7 +88,8 @@ app.factory('optionServices', ['countryData', function(countryData) {
     return {
         setOptions: setOptions,
         setCorrectAnswer: setCorrectAnswer,
-        correctCheck: correctCheck
+        correctCheck: correctCheck,
+        resetOptions: resetOptions
     };
         
 }]);
